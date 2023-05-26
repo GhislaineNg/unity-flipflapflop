@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class sparrowPlayer : MonoBehaviour
 {
@@ -8,10 +9,24 @@ public class sparrowPlayer : MonoBehaviour
     private Vector3 direction;
     public float gravity = -9.8f; //can determine the difficulty of the game
     public float strength = 5f;
+    public GameObject startTextObject;
+    public TextMeshProUGUI countText;
+
+    private bool start = false;
+    private int count;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        count = 0;
+        SetCountText();
+        startTextObject.SetActive(true);
+    }
+
+    void SetCountText()
+    {
+        countText.text = "Count: " + count.ToString();
     }
 
     // Update is called once per frame
@@ -21,9 +36,13 @@ public class sparrowPlayer : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
         {
             direction = Vector3.up * strength;
-
+            start = true;
+            startTextObject.SetActive(false);
         }
-        direction.y += gravity * Time.deltaTime;
-        transform.position += direction * Time.deltaTime;
+        if (start == true)
+        {
+            direction.y += gravity * Time.deltaTime;
+            transform.position += direction * Time.deltaTime;
+        }
     }
 }
