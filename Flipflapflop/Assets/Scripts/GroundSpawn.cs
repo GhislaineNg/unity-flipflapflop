@@ -8,6 +8,7 @@ public class GroundSpawn : MonoBehaviour
     public GameObject Template;
     public GameObject TemplateEmpty;
     public GameObject SpawnReserver;
+    public sparrowPlayer Player;
     private float DistanceTravelled = 0;
 
     private void Start()
@@ -34,15 +35,25 @@ public class GroundSpawn : MonoBehaviour
 
     public void Update()
     {
-        transform.position += new Vector3(-3 * Time.deltaTime, 0, 0);
-        // Debug.Log("positionx: " + transform.position.x + " .... distance: " + DistanceTravelled);
-        // Debug.Log(transform.position.x - DistanceTravelled);
-        if (Math.Abs(transform.position.x) - Math.Abs(DistanceTravelled) >= 6.8)
-
+        if (Player.start == true)
         {
-            DistanceTravelled = transform.position.x;
-            GameObject Spawned = Instantiate(Template, SpawnReserver.transform);
-            Spawned.transform.parent = transform;
+            if (Player.lose == false)
+            {
+                transform.position += new Vector3(-3 * Time.deltaTime, 0, 0);
+                // Debug.Log("positionx: " + transform.position.x + " .... distance: " + DistanceTravelled);
+                // Debug.Log(transform.position.x - DistanceTravelled);
+                if (Math.Abs(transform.position.x) - Math.Abs(DistanceTravelled) >= 6.8)
+
+                {
+                    DistanceTravelled = transform.position.x;
+                    GameObject Spawned = Instantiate(Template, SpawnReserver.transform);
+                    Spawned.transform.parent = transform;
+                }
+            }
+            else
+            {
+                transform.position += new Vector3(0, 0, 0);
+            }
         }
     }
 }

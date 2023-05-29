@@ -11,8 +11,8 @@ public class sparrowPlayer : MonoBehaviour
     public float strength = 5f;
     public GameObject startTextObject;
     public TextMeshProUGUI countText;
-
-    private bool start = false;
+    public bool lose = false;
+    public bool start = false;
     private int count;
 
 
@@ -32,17 +32,29 @@ public class sparrowPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // get bird to fly with space bar or left click
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+        if (lose == false)
         {
-            direction = Vector3.up * strength;
-            start = true;
-            startTextObject.SetActive(false);
+            // get bird to fly with space bar or left click
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+            {
+                direction = Vector3.up * strength;
+                start = true;
+                startTextObject.SetActive(false);
+            }
+            if (start == true)
+            {
+                direction.y += gravity * Time.deltaTime;
+                transform.position += direction * Time.deltaTime;
+            }
         }
-        if (start == true)
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Pipe") || other.gameObject.CompareTag("Ground"))
         {
-            direction.y += gravity * Time.deltaTime;
-            transform.position += direction * Time.deltaTime;
+            lose = true;
+            print("collision");
         }
     }
 }
