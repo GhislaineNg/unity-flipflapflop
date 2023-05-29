@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Pipe
   - Ground
+  - PipeTop
   layers:
   - Default
   - TransparentFX
