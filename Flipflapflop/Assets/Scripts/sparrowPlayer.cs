@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Events;
 
 public class sparrowPlayer : MonoBehaviour
 {
@@ -11,12 +13,19 @@ public class sparrowPlayer : MonoBehaviour
     public float strength = 5f;
     public GameObject startTextObject;
     public GameObject againButton;
+    public GameObject sparrow;
     public TextMeshProUGUI countText;
     public bool lose = false;
     public bool start = false;
     private int count;
     private bool pipeTop = false;
     private Animator animator;
+
+    //livesCount
+    public Image[] lives;
+    public int livesRemaining;
+    public Transform respawnPoint;
+    public bool isPaused;
 
 
     // Start is called before the first frame update
@@ -32,6 +41,30 @@ public class sparrowPlayer : MonoBehaviour
     void SetCountText()
     {
         countText.text = "Count:" + count.ToString();
+    }
+
+    void loseLife()
+    {
+        //decrease the value of livesRemaining
+        livesRemaining--;
+
+        //Hide one of the life image
+        if (livesRemaining >= 0)
+        {
+            lives[livesRemaining].enabled = false;
+        }
+
+        if (livesRemaining == 0)
+        {
+            lose = true;
+            
+        }
+        else
+        {
+            animator.SetTrigger("Dead");
+            isPaused = !isPaused;
+
+        }
     }
 
     // Update is called once per frame
@@ -53,6 +86,7 @@ public class sparrowPlayer : MonoBehaviour
             }
         } else if (lose == true)
         {
+            animator.SetTrigger("Dead");
             againButton.SetActive(true);
             if (pipeTop == false)
             {
@@ -63,21 +97,45 @@ public class sparrowPlayer : MonoBehaviour
                 }
             }
         }
+        if (isPaused)
+        {
+            Time.timeScale = 0;
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                isPaused = !isPaused;
+
+            }
+        }
+        if (!isPaused)
+        {
+            animator.SetTrigger("Reset");
+            Time.timeScale = 1;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Pipe") || other.gameObject.CompareTag("Ground"))
         {
-            lose = true;
-            animator.SetTrigger("Dead");
+            loseLife();
+            
         }
-        else if (other.gameObject.CompareTag("PipeTop"))
-        {
-            lose = true;
-            pipeTop = true;
-            animator.SetTrigger("Dead");
-        }
+        //else if(other.gameObject.CompareTag("PipeTop"))
+        //{
+        //    loseLife();
+        //    pipeTop = true;
+        //}
+        //if (other.gameObject.CompareTag("Pipe") || other.gameObject.CompareTag("Ground"))
+        //{
+        //    lose = true;
+        //    animator.SetTrigger("Dead");
+        //}
+        //else if (other.gameObject.CompareTag("PipeTop"))
+        //{
+        //    lose = true;
+        //    pipeTop = true;
+        //    animator.SetTrigger("Dead");
+        //}
     }
 
     public void Reset()
@@ -91,4 +149,5 @@ public class sparrowPlayer : MonoBehaviour
         animator.SetTrigger("Reset");
         transform.position = new Vector3(-6.75f, 2.5f, 0.0f);
     }
+    
 }
