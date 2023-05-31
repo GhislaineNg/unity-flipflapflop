@@ -13,7 +13,7 @@ public class sparrowPlayer : MonoBehaviour
     public float strength = 5f;
     public GameObject startTextObject;
     public GameObject againButton;
-    public GameObject sparrow;
+    //public GameObject sparrow;
     public TextMeshProUGUI countText;
     public bool lose = false;
     public bool start = false;
@@ -24,7 +24,6 @@ public class sparrowPlayer : MonoBehaviour
     //livesCount
     public Image[] lives;
     public int livesRemaining;
-    public Transform respawnPoint;
     public bool isPaused;
 
 
@@ -61,7 +60,6 @@ public class sparrowPlayer : MonoBehaviour
         }
         else
         {
-            animator.SetTrigger("Dead");
             isPaused = !isPaused;
 
         }
@@ -86,7 +84,7 @@ public class sparrowPlayer : MonoBehaviour
             }
         } else if (lose == true)
         {
-            animator.SetTrigger("Dead");
+            //animator.SetTrigger("Dead");
             againButton.SetActive(true);
             if (pipeTop == false)
             {
@@ -100,10 +98,14 @@ public class sparrowPlayer : MonoBehaviour
         if (isPaused)
         {
             Time.timeScale = 0;
-            if (Input.GetKeyDown(KeyCode.Space))
+           // animator.SetTrigger("Dead");
+            animator.SetTrigger("Reset");
+
+
+            //Resume with space bar or left click
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
             {
                 isPaused = !isPaused;
-
             }
         }
         if (!isPaused)
@@ -117,6 +119,7 @@ public class sparrowPlayer : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Pipe") || other.gameObject.CompareTag("Ground"))
         {
+            animator.SetTrigger("Dead");
             loseLife();
             
         }
