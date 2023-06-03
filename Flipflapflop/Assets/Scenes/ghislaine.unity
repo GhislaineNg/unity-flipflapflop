@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571337, b: 0.3069219, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1381,7 +1381,6 @@ MonoBehaviour:
   strength: 5
   startTextObject: {fileID: 1691086078}
   againButton: {fileID: 521984366}
-  sparrow: {fileID: 1283622250}
   countText: {fileID: 1551624441}
   lose: 0
   start: 0
@@ -1390,38 +1389,7 @@ MonoBehaviour:
   - {fileID: 441104357}
   - {fileID: 1428566900}
   livesRemaining: 3
-  respawnPoint: {fileID: 0}
   isPaused: 0
-  gamePaused:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1283622251}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  gameResume:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1283622251}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
 --- !u!1001 &1300219692
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1495,7 +1463,7 @@ GameObject:
   - component: {fileID: 1319116670}
   m_Layer: 0
   m_Name: SpawnReserver
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

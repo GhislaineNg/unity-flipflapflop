@@ -42,12 +42,14 @@ public class sparrowPlayer : MonoBehaviour
         countText.text = "Count:" + count.ToString();
     }
 
+
+    // decrement the life count on collision
     void loseLife()
     {
-        //decrease the value of livesRemaining
+        // decrement the value of livesRemaining
         livesRemaining--;
-
-        //Hide one of the life image
+      
+        // remove one of the life images
         if (livesRemaining >= 0)
         {
             lives[livesRemaining].enabled = false;
@@ -64,6 +66,7 @@ public class sparrowPlayer : MonoBehaviour
 
         }
     }
+
 
     // Update is called once per frame
     void Update()
@@ -117,11 +120,12 @@ public class sparrowPlayer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.gameObject.CompareTag("Pipe") || other.gameObject.CompareTag("Ground"))
         {
             animator.SetTrigger("Dead");
             loseLife();
-            
+            isPaused = true;
         }
         //else if(other.gameObject.CompareTag("PipeTop"))
         //{
@@ -151,6 +155,11 @@ public class sparrowPlayer : MonoBehaviour
         againButton.SetActive(false);
         animator.SetTrigger("Reset");
         transform.position = new Vector3(-6.75f, 2.5f, 0.0f);
+        livesRemaining = 3;
+        foreach (Image life in lives)
+        {
+            life.enabled = true;
+        }
     }
     
 }
