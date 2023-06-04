@@ -67,6 +67,16 @@ public class sparrowPlayer : MonoBehaviour
         }
     }
 
+    void instantDeath()
+    {
+        livesRemaining = 0;
+        foreach (Image life in lives)
+        {
+            life.enabled = false;
+        }
+        lose = true;
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -120,6 +130,12 @@ public class sparrowPlayer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            animator.SetTrigger("Dead");
+            instantDeath();
+
+        }
 
         if (other.gameObject.CompareTag("Pipe") || other.gameObject.CompareTag("Ground"))
         {
