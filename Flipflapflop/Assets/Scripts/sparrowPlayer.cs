@@ -26,20 +26,21 @@ public class sparrowPlayer : MonoBehaviour
     public int livesRemaining;
     public bool isPaused;
 
+    //coins
+    private GameObject[] collectibles;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        count = 0;
+        
         animator = GetComponent<Animator>();
-        SetCountText();
+
         startTextObject.SetActive(true);
         againButton.SetActive(false);
-    }
-
-    void SetCountText()
-    {
-        countText.text = "Count:" + count.ToString();
+        collectibles = GameObject.FindGameObjectsWithTag("Collectible");
+        Reset();
+        
     }
 
 
@@ -130,19 +131,25 @@ public class sparrowPlayer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Ground"))
+        if (other.gameObject.CompareTag("Collectible"))
+        {
+            other.gameObject.SetActive(false);
+            count += 1;
+            countText.text = "Count: " + count.ToString();
+        } else if (other.gameObject.CompareTag("Pipe"))
+        {
+            animator.SetTrigger("Dead");
+            loseLife();
+            isPaused = true;
+        } else if (other.gameObject.CompareTag("Ground"))
         {
             animator.SetTrigger("Dead");
             instantDeath();
 
         }
 
-        if (other.gameObject.CompareTag("Pipe") || other.gameObject.CompareTag("Ground"))
-        {
-            animator.SetTrigger("Dead");
-            loseLife();
-            isPaused = true;
-        }
+
+
         //else if(other.gameObject.CompareTag("PipeTop"))
         //{
         //    loseLife();
@@ -159,6 +166,8 @@ public class sparrowPlayer : MonoBehaviour
         //    pipeTop = true;
         //    animator.SetTrigger("Dead");
         //}
+
+
     }
 
     public void Reset()
@@ -166,7 +175,8 @@ public class sparrowPlayer : MonoBehaviour
         lose = false;
         start = false;
         pipeTop = false;
-        count = 0;
+        
+
         startTextObject.SetActive(true);
         againButton.SetActive(false);
         animator.SetTrigger("Reset");
@@ -176,6 +186,13 @@ public class sparrowPlayer : MonoBehaviour
         {
             life.enabled = true;
         }
+
+        foreach (GameObject collectible in collectibles)
+        {
+            collectible.SetActive(true);
+        }
+        count = 0;
+        countText.text = "Count: " + count.ToString();
     }
     
 }

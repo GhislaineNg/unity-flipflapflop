@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - PipeTop
   - Tubes
+  - Collectible
   layers:
   - Default
   - TransparentFX

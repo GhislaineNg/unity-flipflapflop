@@ -453,6 +453,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Coin
       objectReference: {fileID: 0}
+    - target: {fileID: 8010473061794447205, guid: 2ac3c1f826ce3421784a66d5f557a8e0, type: 3}
+      propertyPath: m_TagString
+      value: Collectible
+      objectReference: {fileID: 0}
     - target: {fileID: 8039454041039555035, guid: 2ac3c1f826ce3421784a66d5f557a8e0, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -471,7 +475,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8039454041039555035, guid: 2ac3c1f826ce3421784a66d5f557a8e0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.06
+      value: -23.68
       objectReference: {fileID: 0}
     - target: {fileID: 8039454041039555035, guid: 2ac3c1f826ce3421784a66d5f557a8e0, type: 3}
       propertyPath: m_LocalPosition.y
