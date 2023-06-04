@@ -44,16 +44,14 @@ public class sparrowPlayer : MonoBehaviour
     }
 
 
-    // decrement the life count on collision
+    // dlose life upon pipe collision
     void loseLife()
     {
-        // decrement the value of livesRemaining
         livesRemaining--;
       
-        // remove one of the life images
-        if (livesRemaining >= 0)
+        if (livesRemaining >= 0) 
         {
-            lives[livesRemaining].enabled = false;
+            lives[livesRemaining].enabled = false; // deactivate a heart image
         }
 
         if (livesRemaining == 0)
@@ -68,6 +66,7 @@ public class sparrowPlayer : MonoBehaviour
         }
     }
 
+    // instant death upon ground collision
     void instantDeath()
     {
         livesRemaining = 0;
@@ -131,12 +130,15 @@ public class sparrowPlayer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // !!!!!! bug in this collectible!!!
         if (other.gameObject.CompareTag("Collectible"))
         {
             other.gameObject.SetActive(false);
             count += 1;
             countText.text = "Count: " + count.ToString();
-        } else if (other.gameObject.CompareTag("Pipe"))
+        }
+
+        if (other.gameObject.CompareTag("Pipe"))
         {
             animator.SetTrigger("Dead");
             loseLife();
@@ -145,7 +147,6 @@ public class sparrowPlayer : MonoBehaviour
         {
             animator.SetTrigger("Dead");
             instantDeath();
-
         }
 
 
