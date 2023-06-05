@@ -1139,8 +1139,16 @@ MonoBehaviour:
   startTextObject: {fileID: 1691086078}
   againButton: {fileID: 521984366}
   countText: {fileID: 1551624441}
+  lifeLost: {fileID: 0}
+  gameOver: {fileID: 0}
   lose: 0
   start: 0
+  powerupStatus: 0
+  powerupCollsion: 0
+  count: 0
+  lives: []
+  livesRemaining: 0
+  isPaused: 0
 --- !u!1001 &1300219692
 PrefabInstance:
   m_ObjectHideFlags: 0
