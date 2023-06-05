@@ -14,17 +14,22 @@ public class sparrowPlayer : MonoBehaviour
     public float strength = 5f;
     public GameObject startTextObject;
     public GameObject againButton;
-    //public GameObject sparrow;
+
+    // menu
     public TextMeshProUGUI countText;
     public GameObject lifeLost;
     public GameObject gameOver;
+
+    //conditionals
     public bool lose = false;
     public bool start = false;
     public bool powerupStatus = false;
     public bool powerupCollsion;
-    public int multiplier = 1;
-    public int count; 
     private bool pipeTop = false;
+
+    public int multiplier = 1;
+    public int count;
+
     private Animator animator;
 
     //livesCount
@@ -186,29 +191,6 @@ public class sparrowPlayer : MonoBehaviour
 
     public void Reset()
     {
-        //lose = false;
-        //start = false;
-        //pipeTop = false;
-
-
-        //startTextObject.SetActive(true);
-        //againButton.SetActive(false);
-        //gameOver.SetActive(false);
-        //animator.SetTrigger("Reset");
-        //lifeLost.SetActive(false);
-        //transform.position = new Vector3(-6.75f, 2.5f, 0.0f);
-        //livesRemaining = 3;
-        //foreach (Image life in lives)
-        //{
-        //    life.enabled = true;
-        //}
-
-        //foreach (GameObject collectible in collectibles)
-        //{
-        //    collectible.SetActive(true);
-        //}
-        //count = 0;
-        //countText.text = "Coins: " + count.ToString();
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
