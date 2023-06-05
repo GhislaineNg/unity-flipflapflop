@@ -1483,6 +1483,7 @@ MonoBehaviour:
   gameOver: {fileID: 1464473938}
   lose: 0
   start: 0
+  count: 0
   lives:
   - {fileID: 2060573377}
   - {fileID: 441104357}
@@ -2134,7 +2135,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8151031281978082004, guid: 05905decb249d44dc9fa67512f0c25f6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -33
+      value: -32.05
       objectReference: {fileID: 0}
     - target: {fileID: 8151031281978082004, guid: 05905decb249d44dc9fa67512f0c25f6, type: 3}
       propertyPath: m_LocalPosition.z

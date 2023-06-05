@@ -19,7 +19,7 @@ public class sparrowPlayer : MonoBehaviour
     public GameObject gameOver;
     public bool lose = false;
     public bool start = false;
-    private int count;
+    public int count;
     private bool pipeTop = false;
     private Animator animator;
 
