@@ -15,6 +15,7 @@ public class sparrowPlayer : MonoBehaviour
     public GameObject againButton;
     //public GameObject sparrow;
     public TextMeshProUGUI countText;
+    public GameObject gameOver;
     public bool lose = false;
     public bool start = false;
     private int count;
@@ -38,6 +39,7 @@ public class sparrowPlayer : MonoBehaviour
 
         startTextObject.SetActive(true);
         againButton.SetActive(false);
+        gameOver.SetActive(false);
         collectibles = GameObject.FindGameObjectsWithTag("Collectible");
         Reset();
         
@@ -57,7 +59,9 @@ public class sparrowPlayer : MonoBehaviour
         if (livesRemaining == 0)
         {
             lose = true;
-            
+            gameOver.SetActive(true);
+            animator.SetTrigger("Dead");
+
         }
         else
         {
@@ -70,11 +74,13 @@ public class sparrowPlayer : MonoBehaviour
     void instantDeath()
     {
         livesRemaining = 0;
+        animator.SetTrigger("Dead");
         foreach (Image life in lives)
         {
             life.enabled = false;
         }
         lose = true;
+        gameOver.SetActive(true);
     }
 
 
@@ -83,6 +89,7 @@ public class sparrowPlayer : MonoBehaviour
     {
         if (lose == false)
         {
+            animator.SetTrigger("Reset");
             // get bird to fly with space bar or left click
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
             {
@@ -97,7 +104,7 @@ public class sparrowPlayer : MonoBehaviour
             }
         } else if (lose == true)
         {
-            //animator.SetTrigger("Dead");
+            animator.SetTrigger("Dead");
             againButton.SetActive(true);
             if (pipeTop == false)
             {
@@ -111,8 +118,8 @@ public class sparrowPlayer : MonoBehaviour
         if (isPaused)
         {
             Time.timeScale = 0;
-           // animator.SetTrigger("Dead");
-            animator.SetTrigger("Reset");
+            //animator.SetTrigger("Dead");
+            //animator.SetTrigger("Reset");
 
 
             //Resume with space bar or left click
@@ -123,7 +130,7 @@ public class sparrowPlayer : MonoBehaviour
         }
         if (!isPaused)
         {
-            animator.SetTrigger("Reset");
+            //animator.SetTrigger("Reset");
             Time.timeScale = 1;
         }
     }
@@ -153,6 +160,7 @@ public class sparrowPlayer : MonoBehaviour
 
         //else if(other.gameObject.CompareTag("PipeTop"))
         //{
+        //    animator.SetTrigger("Dead");
         //    loseLife();
         //    pipeTop = true;
         //}
@@ -180,6 +188,7 @@ public class sparrowPlayer : MonoBehaviour
 
         startTextObject.SetActive(true);
         againButton.SetActive(false);
+        gameOver.SetActive(false);
         animator.SetTrigger("Reset");
         transform.position = new Vector3(-6.75f, 2.5f, 0.0f);
         livesRemaining = 3;
