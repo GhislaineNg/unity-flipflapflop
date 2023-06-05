@@ -21,16 +21,27 @@ public class sparrowPlayer : MonoBehaviour
     public GameObject gameOver;
 
     //conditionals
+
+    public GameObject powerup;
+    public GameObject powerupEndWarn;
     public bool lose = false;
     public bool start = false;
     public bool powerupStatus = false;
     public bool powerupCollsion;
+
+    public int multiplier = 1;
+    public int count;
+    private int elapsedPower = 0;
+    private int click = 0;
+    private bool powerActivated = false;
+
     private bool pipeTop = false;
 
     public int multiplier = 1;
     public int count;
 
     private Animator animator;
+    public GameObject howToPlay;
 
     //livesCount
     public Image[] lives;
@@ -54,6 +65,10 @@ public class sparrowPlayer : MonoBehaviour
         againButton.SetActive(false);
         gameOver.SetActive(false);
         lifeLost.SetActive(false);
+        howToPlay.SetActive(true);
+        powerup.SetActive(false);
+        powerupEndWarn.SetActive(false);
+
         collectibles = GameObject.FindGameObjectsWithTag("Collectible");
     }
 
@@ -100,6 +115,7 @@ public class sparrowPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //print("powerupStatus = " + powerupStatus + ", powerActivated = " + powerActivated + ", multiplier = " + multiplier + ", elapsedPower = " + elapsedPower);
         if (lose == false)
         {
             animator.SetTrigger("Reset");
@@ -109,12 +125,20 @@ public class sparrowPlayer : MonoBehaviour
                 direction = Vector3.up * strength;
                 start = true;
                 startTextObject.SetActive(false);
+                if (click == 1) {
+                    howToPlay.SetActive(false);
+                }
+                click++;
             }
             if (start == true)
             {
                 direction.y += gravity * Time.deltaTime;
                 transform.position += direction * Time.deltaTime;
             }
+            //if (powerupStatus == true && elapsedPower % 3 != 0)
+            //{
+            //    powerActivated = true;
+            //}
         } else if (lose == true)
         {
             animator.SetTrigger("Dead");
@@ -147,6 +171,7 @@ public class sparrowPlayer : MonoBehaviour
         }
     }
 
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Collectible"))
@@ -157,11 +182,29 @@ public class sparrowPlayer : MonoBehaviour
             countText.text = "Coins: " + count.ToString();
             if (powerupStatus == true)
             {
+                powerActivated = true;
+                powerup.SetActive(true);
                 multiplier = 1;
             }
-            else
+            else if (powerupStatus == false && powerActivated == true) 
+            {
+                elapsedPower++;
+            } else
             {
                 multiplier++;
+            }
+
+            if (elapsedPower % 3 == 2 && elapsedPower != 0 && powerActivated == true && powerupStatus == false)
+            {
+                powerup.SetActive(false);
+                powerupEndWarn.SetActive(true);
+            }
+            else if (elapsedPower % 3 == 0 && elapsedPower != 0 && powerActivated == true && powerupStatus == false)
+            {
+                multiplier = count - elapsedPower;
+                powerupEndWarn.SetActive(false);
+                powerActivated = false;
+                powerupStatus = false;
             }
 
 
@@ -182,11 +225,8 @@ public class sparrowPlayer : MonoBehaviour
             }
         } else if (other.gameObject.CompareTag("Ground"))
         {
-            animator.SetTrigger("Dead");
             instantDeath();
         }
-
-
     }
 
     public void Reset()

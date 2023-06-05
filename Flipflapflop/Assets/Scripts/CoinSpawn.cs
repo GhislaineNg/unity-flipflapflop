@@ -26,7 +26,7 @@ public class CoinSpawn : MonoBehaviour
     {
         gameObject.transform.Rotate(0f, 1f, 1f, Space.Self);
 
-        if (Player.count != 0 && Player.count % 10 == 0)
+        if (Player.count != 0 && Player.count % 15 == 0)
         {
             Player.powerupStatus = true;
             materialRender.sharedMaterial = materials[1]; // red
