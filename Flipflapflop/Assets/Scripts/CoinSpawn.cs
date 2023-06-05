@@ -10,6 +10,7 @@ public class CoinSpawn : MonoBehaviour
     public sparrowPlayer Player;
     public TubeSpawn tubes;
     public int lastCoinCount = 0;
+    public int currTubeCount;
 
     // Start is called before the first frame update
     void Start()
@@ -24,13 +25,21 @@ public class CoinSpawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("tubecount: " + tubes.tubeCount + ". tubecountatred" + currTubeCount);
+
         gameObject.transform.Rotate(0f, 1f, 1f, Space.Self);
 
-        Debug.Log(Player.count);
-        if (Player.count % 5 == 0)
+        if (Player.count != 0 && Player.count % 3 == 0)
         {
             materialRender.sharedMaterial = materials[1]; // red
+
+        } else
+        {
+            materialRender.sharedMaterial = materials[0]; // yellow
         }
+
+        
+
 
 
         //if (Player.count - lastCoinCount >= 5)
