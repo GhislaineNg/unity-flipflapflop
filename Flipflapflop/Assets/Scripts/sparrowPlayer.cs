@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class sparrowPlayer : MonoBehaviour
 {
@@ -40,12 +41,14 @@ public class sparrowPlayer : MonoBehaviour
         
         animator = GetComponent<Animator>();
 
+        count = 0;
+        countText.text = "Coins: " + count.ToString();
+
         startTextObject.SetActive(true);
         againButton.SetActive(false);
         gameOver.SetActive(false);
         lifeLost.SetActive(false);
         collectibles = GameObject.FindGameObjectsWithTag("Collectible");
-        Reset();
         
     }
 
@@ -200,29 +203,31 @@ public class sparrowPlayer : MonoBehaviour
 
     public void Reset()
     {
-        lose = false;
-        start = false;
-        pipeTop = false;
-        
+        //lose = false;
+        //start = false;
+        //pipeTop = false;
 
-        startTextObject.SetActive(true);
-        againButton.SetActive(false);
-        gameOver.SetActive(false);
-        animator.SetTrigger("Reset");
-        lifeLost.SetActive(false);
-        transform.position = new Vector3(-6.75f, 2.5f, 0.0f);
-        livesRemaining = 3;
-        foreach (Image life in lives)
-        {
-            life.enabled = true;
-        }
 
-        foreach (GameObject collectible in collectibles)
-        {
-            collectible.SetActive(true);
-        }
-        count = 0;
-        countText.text = "Coins: " + count.ToString();
+        //startTextObject.SetActive(true);
+        //againButton.SetActive(false);
+        //gameOver.SetActive(false);
+        //animator.SetTrigger("Reset");
+        //lifeLost.SetActive(false);
+        //transform.position = new Vector3(-6.75f, 2.5f, 0.0f);
+        //livesRemaining = 3;
+        //foreach (Image life in lives)
+        //{
+        //    life.enabled = true;
+        //}
+
+        //foreach (GameObject collectible in collectibles)
+        //{
+        //    collectible.SetActive(true);
+        //}
+        //count = 0;
+        //countText.text = "Coins: " + count.ToString();
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     
 }
