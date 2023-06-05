@@ -151,7 +151,7 @@ public class sparrowPlayer : MonoBehaviour
         {
             other.gameObject.SetActive(false);
             count += 1;
-            countText.text = "Count: " + count.ToString();
+            countText.text = "Coins: " + count.ToString();
         }
 
         if (other.gameObject.CompareTag("Pipe"))
@@ -220,7 +220,7 @@ public class sparrowPlayer : MonoBehaviour
             collectible.SetActive(true);
         }
         count = 0;
-        countText.text = "Count: " + count.ToString();
+        countText.text = "Coins: " + count.ToString();
     }
     
 }
