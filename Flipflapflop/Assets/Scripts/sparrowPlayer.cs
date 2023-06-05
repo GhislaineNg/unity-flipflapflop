@@ -26,6 +26,7 @@ public class sparrowPlayer : MonoBehaviour
     public int count; 
     private bool pipeTop = false;
     private Animator animator;
+    public GameObject howToPlay;
 
     //livesCount
     public Image[] lives;
@@ -49,6 +50,8 @@ public class sparrowPlayer : MonoBehaviour
         againButton.SetActive(false);
         gameOver.SetActive(false);
         lifeLost.SetActive(false);
+        howToPlay.SetActive(true);
+
         collectibles = GameObject.FindGameObjectsWithTag("Collectible");
     }
 
@@ -104,6 +107,7 @@ public class sparrowPlayer : MonoBehaviour
                 direction = Vector3.up * strength;
                 start = true;
                 startTextObject.SetActive(false);
+                howToPlay.SetActive(false);
             }
             if (start == true)
             {
@@ -142,6 +146,7 @@ public class sparrowPlayer : MonoBehaviour
         }
     }
 
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Collectible"))
@@ -177,11 +182,8 @@ public class sparrowPlayer : MonoBehaviour
             }
         } else if (other.gameObject.CompareTag("Ground"))
         {
-            animator.SetTrigger("Dead");
             instantDeath();
         }
-
-
     }
 
     public void Reset()
