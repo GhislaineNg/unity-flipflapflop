@@ -848,7 +848,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 752008927}
-  m_LocalRotation: {x: -0.0000000037252903, y: -0.25583404, z: -4.656613e-10, w: 0.9667207}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -277}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -858,10 +858,10 @@ RectTransform:
   - {fileID: 2060573376}
   m_Father: {fileID: 362643991}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -29.646, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -487, y: 296}
+  m_AnchoredPosition: {x: -588, y: 296}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &752008929
@@ -1632,6 +1632,7 @@ MonoBehaviour:
   start: 0
   powerupStatus: 0
   powerupCollsion: 0
+  multiplier: 1
   count: 0
   lives:
   - {fileID: 2060573377}
@@ -2225,10 +2226,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Tubes: {fileID: 196539257}
-  TemplateEmpty: {fileID: 1849803585}
   SpawnReserver: {fileID: 1319116669}
   Player: {fileID: 1283622251}
-  tubeCount: 0
 --- !u!1 &1517959482
 GameObject:
   m_ObjectHideFlags: 0
