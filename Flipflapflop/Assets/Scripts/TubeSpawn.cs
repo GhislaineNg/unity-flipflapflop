@@ -46,7 +46,7 @@ public class TubeSpawn : MonoBehaviour
         {
             if (Player.lose == false)
             {
-                transform.position += new Vector3((-3 + (Player.count * -1)) * Time.deltaTime, 0, 0);
+                transform.position += new Vector3((-3 + (Player.count * -0.5f)) * Time.deltaTime, 0, 0);
                 if (Math.Abs(transform.position.x) - Math.Abs(DistanceTravelled) >= 6.8)
 
                 {
