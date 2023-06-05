@@ -15,6 +15,7 @@ public class sparrowPlayer : MonoBehaviour
     public GameObject againButton;
     //public GameObject sparrow;
     public TextMeshProUGUI countText;
+    public GameObject lifeLost;
     public GameObject gameOver;
     public bool lose = false;
     public bool start = false;
@@ -40,6 +41,7 @@ public class sparrowPlayer : MonoBehaviour
         startTextObject.SetActive(true);
         againButton.SetActive(false);
         gameOver.SetActive(false);
+        lifeLost.SetActive(false);
         collectibles = GameObject.FindGameObjectsWithTag("Collectible");
         Reset();
         
@@ -59,7 +61,9 @@ public class sparrowPlayer : MonoBehaviour
         if (livesRemaining == 0)
         {
             lose = true;
+            start = false;
             gameOver.SetActive(true);
+            lifeLost.SetActive(false);
             animator.SetTrigger("Dead");
 
         }
@@ -81,12 +85,15 @@ public class sparrowPlayer : MonoBehaviour
         }
         lose = true;
         gameOver.SetActive(true);
+        start = false;
     }
 
 
     // Update is called once per frame
     void Update()
     {
+        //print("lose = " + lose);
+        //print("y = " + transform.position.y);
         if (lose == false)
         {
             animator.SetTrigger("Reset");
@@ -121,11 +128,13 @@ public class sparrowPlayer : MonoBehaviour
             //animator.SetTrigger("Dead");
             //animator.SetTrigger("Reset");
 
-
+            lifeLost.SetActive(true);
             //Resume with space bar or left click
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
             {
                 isPaused = !isPaused;
+                lifeLost.SetActive(false);
+                transform.position = new Vector3(transform.position.x, 3.0f, transform.position.z);
             }
         }
         if (!isPaused)
@@ -149,7 +158,15 @@ public class sparrowPlayer : MonoBehaviour
         {
             animator.SetTrigger("Dead");
             loseLife();
-            isPaused = true;
+            if (livesRemaining > 0)
+            {
+                isPaused = true;
+                lose = false;
+            } else
+            {
+                isPaused = false;
+                lose = true;
+            }
         } else if (other.gameObject.CompareTag("Ground"))
         {
             animator.SetTrigger("Dead");
@@ -190,6 +207,7 @@ public class sparrowPlayer : MonoBehaviour
         againButton.SetActive(false);
         gameOver.SetActive(false);
         animator.SetTrigger("Reset");
+        lifeLost.SetActive(false);
         transform.position = new Vector3(-6.75f, 2.5f, 0.0f);
         livesRemaining = 3;
         foreach (Image life in lives)
