@@ -37,9 +37,6 @@ public class sparrowPlayer : MonoBehaviour
 
     private bool pipeTop = false;
 
-    public int multiplier = 1;
-    public int count;
-
     private Animator animator;
     public GameObject howToPlay;
 
