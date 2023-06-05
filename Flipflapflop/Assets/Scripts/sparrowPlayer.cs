@@ -22,7 +22,8 @@ public class sparrowPlayer : MonoBehaviour
     public bool start = false;
     public bool powerupStatus = false;
     public bool powerupCollsion;
-    public int count;
+    public int multiplier = 1;
+    public int count; 
     private bool pipeTop = false;
     private Animator animator;
 
@@ -38,10 +39,10 @@ public class sparrowPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
         animator = GetComponent<Animator>();
 
         count = 0;
+        multiplier = 1;
         countText.text = "Coins: " + count.ToString();
 
         startTextObject.SetActive(true);
@@ -52,16 +53,14 @@ public class sparrowPlayer : MonoBehaviour
     }
 
 
-    // dlose life upon pipe collision
+    // lose life upon pipe collision
     void loseLife()
     {
         livesRemaining--;
-      
         if (livesRemaining >= 0) 
         {
             lives[livesRemaining].enabled = false; // deactivate a heart image
         }
-
         if (livesRemaining == 0)
         {
             lose = true;
@@ -145,12 +144,22 @@ public class sparrowPlayer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // !!!!!! bug in this collectible!!!
         if (other.gameObject.CompareTag("Collectible"))
         {
             other.gameObject.SetActive(false);
             count += 1;
+            
             countText.text = "Coins: " + count.ToString();
+            if (powerupStatus == true)
+            {
+                multiplier = 1;
+            }
+            else
+            {
+                multiplier++;
+            }
+
+
         }
 
         if (other.gameObject.CompareTag("Pipe"))

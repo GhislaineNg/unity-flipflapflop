@@ -1485,6 +1485,7 @@ MonoBehaviour:
   start: 0
   powerupStatus: 0
   powerupCollsion: 0
+  multiplier: 1
   count: 0
   lives:
   - {fileID: 2060573377}
@@ -1943,10 +1944,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Tubes: {fileID: 196539257}
-  TemplateEmpty: {fileID: 1849803585}
   SpawnReserver: {fileID: 1319116669}
   Player: {fileID: 1283622251}
-  tubeCount: 0
 --- !u!1 &1517959482
 GameObject:
   m_ObjectHideFlags: 0

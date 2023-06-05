@@ -39,11 +39,8 @@ public class GroundSpawn : MonoBehaviour
         {
             if (Player.lose == false)
             {
-                transform.position += new Vector3((-3 + (Player.count * -0.5f)) * Time.deltaTime, 0, 0);
-                // Debug.Log("positionx: " + transform.position.x + " .... distance: " + DistanceTravelled);
-                // Debug.Log(transform.position.x - DistanceTravelled);
+                transform.position += new Vector3((-3 + (Player.multiplier * -2.5f)) * Time.deltaTime, 0, 0);
                 if (Math.Abs(transform.position.x) - Math.Abs(DistanceTravelled) >= 6.8)
-
                 {
                     DistanceTravelled = transform.position.x;
                     GameObject Spawned = Instantiate(Template, SpawnReserver.transform);
