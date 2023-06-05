@@ -6,9 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Ghislaine.unity
+    path: Assets/Scenes/ghislaine.unity
     guid: 2302259f1818d4cc893e4305bf0f1c3a
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/Scene2.unity
-    guid: 479c08281c11a4ccba2b94c4b91db315
+    path: Assets/Scenes/HowToPlayScene.unity
+    guid: bf6d5e7e49619437196592dff403212b
   m_configObjects: {}
