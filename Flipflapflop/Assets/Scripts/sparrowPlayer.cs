@@ -49,7 +49,6 @@ public class sparrowPlayer : MonoBehaviour
         gameOver.SetActive(false);
         lifeLost.SetActive(false);
         collectibles = GameObject.FindGameObjectsWithTag("Collectible");
-        
     }
 
 
@@ -97,8 +96,6 @@ public class sparrowPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //print("lose = " + lose);
-        //print("y = " + transform.position.y);
         if (lose == false)
         {
             animator.SetTrigger("Reset");
@@ -130,9 +127,7 @@ public class sparrowPlayer : MonoBehaviour
         if (isPaused)
         {
             Time.timeScale = 0;
-            //animator.SetTrigger("Dead");
-            //animator.SetTrigger("Reset");
-
+    
             lifeLost.SetActive(true);
             //Resume with space bar or left click
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
@@ -144,7 +139,6 @@ public class sparrowPlayer : MonoBehaviour
         }
         if (!isPaused)
         {
-            //animator.SetTrigger("Reset");
             Time.timeScale = 1;
         }
     }
@@ -177,26 +171,6 @@ public class sparrowPlayer : MonoBehaviour
             animator.SetTrigger("Dead");
             instantDeath();
         }
-
-
-
-        //else if(other.gameObject.CompareTag("PipeTop"))
-        //{
-        //    animator.SetTrigger("Dead");
-        //    loseLife();
-        //    pipeTop = true;
-        //}
-        //if (other.gameObject.CompareTag("Pipe") || other.gameObject.CompareTag("Ground"))
-        //{
-        //    lose = true;
-        //    animator.SetTrigger("Dead");
-        //}
-        //else if (other.gameObject.CompareTag("PipeTop"))
-        //{
-        //    lose = true;
-        //    pipeTop = true;
-        //    animator.SetTrigger("Dead");
-        //}
 
 
     }
