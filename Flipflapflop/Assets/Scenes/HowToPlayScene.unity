@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571337, b: 0.3069219, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -309,7 +309,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -721,23 +721,24 @@ MonoBehaviour:
   m_text: 'How to play?
 
 
-    1. Hit the spacebar or right-click to control the bird.
+    1. Hit the spacebar or left-click to make the bird
+    fly.
 
 
-    2.
-    Players will have 3 lives. Once the bird hits the logs, it will lose 1 life.
-    However, if it hits the ground, the game is over!
+    2. Players will have 3 lives. Once the bird hits the logs, it will
+    lose 1 life. However, if it hits the ground, the game is over!
 
 
-    3. The player will speed
-    up as they collect more coins.
+    3. The player
+    will speed up as they collect more coins.
 
 
-    4. There is a coin that contains a "superpower".
-    Play to find out more!
+    4. There is a coin that contains
+    a "superpower". Play to find out more!
 
 
-    5. Enjoy the game!'
+    5. Enjoy the game! Collect as many
+    coins as you can!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}

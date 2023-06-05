@@ -23,7 +23,10 @@ public class sparrowPlayer : MonoBehaviour
     public bool powerupStatus = false;
     public bool powerupCollsion;
     public int multiplier = 1;
-    public int count; 
+    public int count;
+    public int elapsedPower = 0;
+    public int click = 0;
+    public bool powerActivated = false;
     private bool pipeTop = false;
     private Animator animator;
     public GameObject howToPlay;
@@ -98,6 +101,7 @@ public class sparrowPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //print("powerupStatus = " + powerupStatus + ", powerActivated = " + powerActivated + ", multiplier = " + multiplier + ", elapsedPower = " + elapsedPower);
         if (lose == false)
         {
             animator.SetTrigger("Reset");
@@ -107,13 +111,20 @@ public class sparrowPlayer : MonoBehaviour
                 direction = Vector3.up * strength;
                 start = true;
                 startTextObject.SetActive(false);
-                howToPlay.SetActive(false);
+                if (click == 1) {
+                    howToPlay.SetActive(false);
+                }
+                click++;
             }
             if (start == true)
             {
                 direction.y += gravity * Time.deltaTime;
                 transform.position += direction * Time.deltaTime;
             }
+            //if (powerupStatus == true && elapsedPower % 3 != 0)
+            //{
+            //    powerActivated = true;
+            //}
         } else if (lose == true)
         {
             animator.SetTrigger("Dead");
@@ -157,11 +168,22 @@ public class sparrowPlayer : MonoBehaviour
             countText.text = "Coins: " + count.ToString();
             if (powerupStatus == true)
             {
+                powerActivated = true;
                 multiplier = 1;
             }
-            else
+            else if (powerupStatus == false && powerActivated == true) 
+            {
+                elapsedPower++;
+            } else
             {
                 multiplier++;
+            }
+
+            if (elapsedPower % 3 == 0 && elapsedPower != 0 && powerActivated == true && powerupStatus == false)
+            {
+                multiplier = count - elapsedPower;
+                powerActivated = false;
+                powerupStatus = false;
             }
 
 
