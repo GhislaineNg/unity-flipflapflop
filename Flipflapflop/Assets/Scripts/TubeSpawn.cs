@@ -28,7 +28,7 @@ public class TubeSpawn : MonoBehaviour
                 if (Math.Abs(transform.position.x) - Math.Abs(DistanceTravelled) >= 6.8)
 
                 {
-                    float RandomX = UnityEngine.Random.Range(35f, 37f);
+                    float RandomX = UnityEngine.Random.Range(35f, 38f);
                     // 34 strict minimum!!, maximum can be adjusted depending on camera placement
                     // Debug.Log(RandomX);
 

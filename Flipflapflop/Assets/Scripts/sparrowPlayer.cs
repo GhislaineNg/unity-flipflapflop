@@ -18,15 +18,17 @@ public class sparrowPlayer : MonoBehaviour
     public TextMeshProUGUI countText;
     public GameObject lifeLost;
     public GameObject gameOver;
+    public GameObject powerup;
+    public GameObject powerupEndWarn;
     public bool lose = false;
     public bool start = false;
     public bool powerupStatus = false;
     public bool powerupCollsion;
     public int multiplier = 1;
     public int count;
-    public int elapsedPower = 0;
-    public int click = 0;
-    public bool powerActivated = false;
+    private int elapsedPower = 0;
+    private int click = 0;
+    private bool powerActivated = false;
     private bool pipeTop = false;
     private Animator animator;
     public GameObject howToPlay;
@@ -54,6 +56,8 @@ public class sparrowPlayer : MonoBehaviour
         gameOver.SetActive(false);
         lifeLost.SetActive(false);
         howToPlay.SetActive(true);
+        powerup.SetActive(false);
+        powerupEndWarn.SetActive(false);
 
         collectibles = GameObject.FindGameObjectsWithTag("Collectible");
     }
@@ -169,6 +173,7 @@ public class sparrowPlayer : MonoBehaviour
             if (powerupStatus == true)
             {
                 powerActivated = true;
+                powerup.SetActive(true);
                 multiplier = 1;
             }
             else if (powerupStatus == false && powerActivated == true) 
@@ -179,9 +184,15 @@ public class sparrowPlayer : MonoBehaviour
                 multiplier++;
             }
 
-            if (elapsedPower % 3 == 0 && elapsedPower != 0 && powerActivated == true && powerupStatus == false)
+            if (elapsedPower % 3 == 2 && elapsedPower != 0 && powerActivated == true && powerupStatus == false)
+            {
+                powerup.SetActive(false);
+                powerupEndWarn.SetActive(true);
+            }
+            else if (elapsedPower % 3 == 0 && elapsedPower != 0 && powerActivated == true && powerupStatus == false)
             {
                 multiplier = count - elapsedPower;
+                powerupEndWarn.SetActive(false);
                 powerActivated = false;
                 powerupStatus = false;
             }
