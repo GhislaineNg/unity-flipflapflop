@@ -29,7 +29,7 @@ public class CoinSpawn : MonoBehaviour
 
         gameObject.transform.Rotate(0f, 1f, 1f, Space.Self);
 
-        if (Player.count != 0 && Player.count % 3 == 0)
+        if (Player.count != 0 && Player.count % 5 == 0)
         {
             materialRender.sharedMaterial = materials[1]; // red
 
@@ -37,6 +37,8 @@ public class CoinSpawn : MonoBehaviour
         {
             materialRender.sharedMaterial = materials[0]; // yellow
         }
+
+
 
         
 
