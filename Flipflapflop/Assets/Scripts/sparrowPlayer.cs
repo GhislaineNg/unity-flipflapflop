@@ -85,7 +85,8 @@ public class sparrowPlayer : MonoBehaviour
             gameOver.SetActive(true);
             lifeLost.SetActive(false);
             animator.SetTrigger("Dead");
-
+            powerup.SetActive(false);
+            powerupEndWarn.SetActive(false);
         }
         else
         {
@@ -105,6 +106,8 @@ public class sparrowPlayer : MonoBehaviour
         }
         lose = true;
         gameOver.SetActive(true);
+        powerup.SetActive(false);
+        powerupEndWarn.SetActive(false);
         start = false;
     }
 
