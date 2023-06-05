@@ -19,6 +19,7 @@ public class sparrowPlayer : MonoBehaviour
     public TextMeshProUGUI countText;
     public GameObject lifeLost;
     public GameObject gameOver;
+    [SerializeField] TextMeshProUGUI highScoreText;
 
     //conditionals
 
@@ -57,6 +58,7 @@ public class sparrowPlayer : MonoBehaviour
         count = 0;
         multiplier = 1;
         countText.text = "Coins: " + count.ToString();
+        UpdateHighScoreText();
 
         startTextObject.SetActive(true);
         againButton.SetActive(false);
@@ -178,7 +180,9 @@ public class sparrowPlayer : MonoBehaviour
         {
             other.gameObject.SetActive(false);
             count += 1;
-            
+            CheckHighScore();
+            UpdateHighScoreText();
+
             countText.text = "Coins: " + count.ToString();
             if (powerupStatus == true)
             {
@@ -227,6 +231,20 @@ public class sparrowPlayer : MonoBehaviour
         {
             instantDeath();
         }
+    }
+
+    void CheckHighScore()
+    {
+        if (count > PlayerPrefs.GetInt("Highscore", 0))
+        {
+            PlayerPrefs.SetInt("Highscore", count);
+            //PlayerPrefs.GetInt("Highscore");
+        }
+    }
+
+    void UpdateHighScoreText()
+    {
+        highScoreText.text = $"High Score: {PlayerPrefs.GetInt("Highscore", 0)}";
     }
 
     public void Reset()
