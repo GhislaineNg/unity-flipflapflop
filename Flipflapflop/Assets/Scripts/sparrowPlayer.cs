@@ -49,6 +49,8 @@ public class sparrowPlayer : MonoBehaviour
     //coins
     private GameObject[] collectibles;
 
+    public AudioSource playSound;
+
 
     // Start is called before the first frame update
     void Start()
@@ -67,6 +69,7 @@ public class sparrowPlayer : MonoBehaviour
         howToPlay.SetActive(true);
         powerup.SetActive(false);
         powerupEndWarn.SetActive(false);
+       
 
         collectibles = GameObject.FindGameObjectsWithTag("Collectible");
     }
@@ -122,8 +125,10 @@ public class sparrowPlayer : MonoBehaviour
         {
             animator.SetTrigger("Reset");
             // get bird to fly with space bar or left click
+           
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
             {
+                
                 direction = Vector3.up * strength;
                 start = true;
                 startTextObject.SetActive(false);
@@ -131,6 +136,7 @@ public class sparrowPlayer : MonoBehaviour
                     howToPlay.SetActive(false);
                 }
                 click++;
+                playSound.Play(); 
             }
             if (start == true)
             {
